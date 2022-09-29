@@ -1,0 +1,7 @@
+{
+  "name": "proyecto-registrapp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

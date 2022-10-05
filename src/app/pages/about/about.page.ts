@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AnimationDirection, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-about',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AboutPage implements OnInit {
 
-  constructor() { }
+  constructor(private route : Router) { }
 
   ngOnInit() {
   }
+  
+  DetBast(){
+    this.route.navigate(['/login']);
+  }
+  
+  DetGonz(){
+    this.route.navigate(['/det-gonz']);
+  }
 
-}
+  DetToma(){
+    this.route.navigate(['/det-toma']);
+  }
+  
+  }
+

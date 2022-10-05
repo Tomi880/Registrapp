@@ -22,7 +22,19 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
+  },  {
+    path: 'detbastian',
+    loadChildren: () => import('./pages/detbastian/detbastian.module').then( m => m.DetbastianPageModule)
   },
+  {
+    path: 'dettomas',
+    loadChildren: () => import('./pages/dettomas/dettomas.module').then( m => m.DettomasPageModule)
+  },
+  {
+    path: 'detgonzalo',
+    loadChildren: () => import('./pages/detgonzalo/detgonzalo.module').then( m => m.DetgonzaloPageModule)
+  },
+
 
 
 ];

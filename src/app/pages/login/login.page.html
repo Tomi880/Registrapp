@@ -1,9 +1,33 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>login</ion-title>
+<ion-header [translucent]="true">
+  <ion-toolbar color="dark">
+    <ion-title>{{ pageTitle | titlecase }}</ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
-
+  <img class="img-logo" src="../../../assets/Logo_DuocUC.svg.png" alt="">
+  <br>
+  <br>
+  <ion-card>
+    <ion-card-title color="Medium" class="ion-text-center">
+        <ion-label>
+            <h1>Ingrese sus datos</h1>
+        </ion-label>
+    </ion-card-title>
+    <ion-card-content>
+        <ion-item>
+            <ion-label position="floating">Nombre de Usuario</ion-label>
+            <ion-input  type="text" 
+                        [(ngModel)]="user.username" 
+                        placeholder="Username"
+                        required></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Contraseña</ion-label>
+            <ion-input  type="password" 
+                        [(ngModel)]="user.password"
+                        required></ion-input>   
+        </ion-item>
+    </ion-card-content>
+    <ion-button color= "warning" shape="block" (click)="ingresar()">Ingreso </ion-button>
+</ion-card>
 </ion-content>

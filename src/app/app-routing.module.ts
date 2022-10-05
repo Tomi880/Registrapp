@@ -34,6 +34,10 @@ const routes: Routes = [
     path: 'detgonzalo',
     loadChildren: () => import('./pages/detgonzalo/detgonzalo.module').then( m => m.DetgonzaloPageModule)
   },
+  {
+    path: 'bienvenida',
+    loadChildren: () => import('./pages/bienvenida/bienvenida.module').then( m => m.BienvenidaPageModule)
+  }
 
 
 

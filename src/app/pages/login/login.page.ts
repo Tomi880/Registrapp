@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AnimationDirection, ToastController } from '@ionic/angular';
+import { AnimationDirection, IonImg, ToastController } from '@ionic/angular';
+import { LoadingController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-login',
@@ -9,7 +11,11 @@ import { AnimationDirection, ToastController } from '@ionic/angular';
 })
 export class LoginPage implements OnInit {
 
+  
+
   pageTitle = 'Login';
+  isNotHome = false;
+  loading : HTMLIonLoadingElement;
 
   //Modelo
   user: any = {
@@ -20,10 +26,29 @@ export class LoginPage implements OnInit {
 
   field : string = '';
 
-  constructor(private toastCtrl: ToastController, private route : Router) { }
+  constructor(private toastCtrl: ToastController, private route : Router ,private loadingCtrl: LoadingController) { }
 
-  ngOnInit() {
+
+  ngOnInit(): void{
+    this.cargarLoading('Bienvenidos a Registrap');
   }
+
+  cargarLoading(message: string){
+    this.presentLoading(message);
+    setTimeout(() => {
+      this.loading.dismiss();
+    },2000);
+  }
+
+  async presentLoading(message: string) {
+    this.loading = await this.loadingCtrl.create({
+      message,
+    });
+
+    await this.loading.present();
+
+  }
+
 
   ingresar(){
     if(this.validateModel(this.user)){

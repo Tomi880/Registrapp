@@ -7,6 +7,12 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./folder.page.scss'],
 })
 export class FolderPage implements OnInit {
+
+  
+  pageTitle = 'folder';
+  isNotHome = true;
+  loading : HTMLIonLoadingElement;
+
   public folder: string;
 
   constructor(private activatedRoute: ActivatedRoute) { }

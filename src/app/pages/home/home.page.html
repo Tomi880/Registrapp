@@ -1,11 +1,4 @@
-<ion-header [translucent]="true">
-  <ion-toolbar color="dark">
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>{{ pageTitle | titlecase }}</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header [isNotHome]="isNotHome" [pageTitle]="pageTitle"></app-header>
 <ion-content>
 
 </ion-content>

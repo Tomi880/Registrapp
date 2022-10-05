@@ -9,13 +9,13 @@ import { LoadingController } from '@ionic/angular';
 export class HomePage implements OnInit {
 
   pageTitle = 'home';
-  isNotHome = false;
+  isNotHome = true;
   loading : HTMLIonLoadingElement;
 
   constructor(private loadingCtrl: LoadingController) {}
 
   ngOnInit(): void {
-    this.cargarLoading('Bienvenido a RegistrAPP');
+    this.cargarLoading('Cargando');
   }
 
   cargarLoading(message: string){

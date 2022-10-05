@@ -9,6 +9,9 @@ import { AnimationDirection, ToastController } from '@ionic/angular';
 })
 export class AboutPage implements OnInit {
 
+  pageTitle = 'About';
+  isNotHome = true;
+
   constructor(private route : Router) { }
 
   ngOnInit() {

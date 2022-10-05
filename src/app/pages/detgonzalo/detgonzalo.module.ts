@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { DetgonzaloPageRoutingModule } from './detgonzalo-routing.module';
 
 import { DetgonzaloPage } from './detgonzalo.page';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    DetgonzaloPageRoutingModule
+    DetgonzaloPageRoutingModule,
+    ComponentsModule
   ],
   declarations: [DetgonzaloPage]
 })

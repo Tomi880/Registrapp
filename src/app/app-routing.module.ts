@@ -26,8 +26,11 @@ const routes: Routes = [
   {
     path: 'bienvenida',
     loadChildren: () => import('./pages/bienvenida/bienvenida.module').then( m => m.BienvenidaPageModule)
+  },
+  {
+    path: 'bienvenida-a',
+    loadChildren: () => import('./pages/bienvenida-a/bienvenida-a.module').then( m => m.BienvenidaAPageModule)
   }
-
 
 ];
 

@@ -9,21 +9,24 @@ import { AnimationDirection, ToastController } from '@ionic/angular';
 })
 export class AboutPage implements OnInit {
 
+  pageTitle = 'About';
+  isNotHome = true;
+
   constructor(private route : Router) { }
 
   ngOnInit() {
   }
   
-  DetBast(){
-    this.route.navigate(['/login']);
+  DetBastian(){
+    this.route.navigate(['/detbastian']);
   }
   
-  DetGonz(){
-    this.route.navigate(['/det-gonz']);
+  DetGonzalo(){
+    this.route.navigate(['/detgonzalo']);
   }
 
-  DetToma(){
-    this.route.navigate(['/det-toma']);
+  DetTomas(){
+    this.route.navigate(['/dettomas']);
   }
   
   }

@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { AboutPageRoutingModule } from './about-routing.module';
+import { DetbastianPageRoutingModule } from './detbastian-routing.module';
 
-import { AboutPage } from './about.page';
+import { DetbastianPage } from './detbastian.page';
 import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
@@ -14,9 +14,9 @@ import { ComponentsModule } from 'src/app/components/components.module';
     CommonModule,
     FormsModule,
     IonicModule,
-    AboutPageRoutingModule,
+    DetbastianPageRoutingModule,
     ComponentsModule
   ],
-  declarations: [AboutPage]
+  declarations: [DetbastianPage]
 })
-export class AboutPageModule {}
+export class DetbastianPageModule {}

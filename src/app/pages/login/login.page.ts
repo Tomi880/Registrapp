@@ -42,7 +42,7 @@ export class LoginPage implements OnInit {
 
   async presentLoading(message: string) {
     this.loading = await this.loadingCtrl.create({
-    message: `<img src="assets/Negro con Dorado Círculo Inmobiliaria Logo.svg" class="img-align" />`,
+    message: ` <ion-avatar><img src="assets/Negro con Dorado Círculo Inmobiliaria Logo.svg" class="img-align"</ion-avatar> />`,
     cssClass:`loading-wrapper img-align`
     });
 

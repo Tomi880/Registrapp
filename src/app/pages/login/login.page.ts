@@ -42,7 +42,8 @@ export class LoginPage implements OnInit {
 
   async presentLoading(message: string) {
     this.loading = await this.loadingCtrl.create({
-      message,
+    message: `<img src="assets/Negro con Dorado Círculo Inmobiliaria Logo.svg" class="img-align" />`,
+    cssClass:`loading-wrapper img-align`
     });
 
     await this.loading.present();
@@ -69,12 +70,12 @@ export class LoginPage implements OnInit {
     }
     if (value == 'admin'){
       this.field = 'Bienvenido admin';
-      this.route.navigate(['/home']);
+      this.route.navigate(['/bienvenida-a']);
       return true;
     }
     else{
       this.field = 'Bienvenido Usuario';
-      this.route.navigate(['/home']);
+      this.route.navigate(['/bienvenida']);
       return true;
     }
     

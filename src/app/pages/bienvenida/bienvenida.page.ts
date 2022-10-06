@@ -7,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BienvenidaPage implements OnInit {
 
+  pageTitle = 'Bienvenido usuario.';
+  isNotHome = false;
+  loading : HTMLIonLoadingElement;
+
   constructor() { }
 
   ngOnInit() {

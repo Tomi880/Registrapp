@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { MindicadorService } from 'src/app/services/mindicador/mindicador.service'
 
 @Component({
   selector: 'app-coversor',
@@ -7,12 +9,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CoversorPage implements OnInit {
 
+  valorMoneda:any= [];
   pageTitle = 'coversor';
   isNotHome = true;
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(private activatedRoute: ActivatedRoute, private mindicadorService:MindicadorService, ) {
   }
 
-}
+  ngOnInit():void {
+    this.cargarValorMonedas();
+  }
+
+    cargarValorMonedas(){
+      this.mindicadorService.obtenerValorPesos()
+      .then(respuesta => {
+        this.valorMoneda = [respuesta.uf,respuesta.dolar,respuesta.euro];
+        console.log(this.valorMoneda);
+      },
+      (err) => {
+        console.log(err);
+      });
+    }
+  }

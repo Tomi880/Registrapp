@@ -1,6 +1,22 @@
-<app-header [isNotHome]="isNotHome" [pageTitle]="pageTitle"></app-header>
-
+<ion-header>
+    <ion-toolbar>
+      <ion-title>{{pageTitle}}</ion-title>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/"></ion-back-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  
 
 <ion-content>
-
+    <ion-list>
+        <ion-item *ngFor="let moneda of valorMoneda">
+          <ion-label>
+            <h3>{{moneda.codigo}}
+                {{moneda.valor}}
+            </h3>
+            <h5></h5>
+          </ion-label>
+        </ion-item> 
+      </ion-list>
 </ion-content>

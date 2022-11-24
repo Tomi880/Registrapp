@@ -10,13 +10,21 @@
 
 <ion-content>
     <ion-list>
+      <h1>
+        conversor de monedas
+      </h1>
         <ion-item *ngFor="let moneda of valorMoneda">
           <ion-label>
             <h3>{{moneda.codigo}}
-                {{moneda.valor}}
+                {{moneda.valor}}$
             </h3>
-            <h5></h5>
           </ion-label>
         </ion-item> 
+        <input type="radio" name="cambio" id="uno"> Dolar
+        <input type="radio" name="cambio" id="dos"> Euro
+        <input type="radio" name="cambio" id="tres"> UF
+        <p>Ingrese monto:</p>
+        <input type="number" name="cambio" min="1" placeholder="0" id="cuatro">
+        <input type="button" id="cotizador" value="Conversor" onclick="">
       </ion-list>
 </ion-content>

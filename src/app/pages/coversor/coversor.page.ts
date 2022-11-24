@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MindicadorService } from 'src/app/services/mindicador/mindicador.service'
+import { MindicadorService } from 'src/app/services/mindicador/mindicador.service';
 
 @Component({
   selector: 'app-coversor',
@@ -17,6 +17,7 @@ export class CoversorPage implements OnInit {
   }
 
   ngOnInit():void {
+    const moneda1 = document.getElementById('uno')
     this.cargarValorMonedas();
   }
 
@@ -30,4 +31,5 @@ export class CoversorPage implements OnInit {
         console.log(err);
       });
     }
+
   }

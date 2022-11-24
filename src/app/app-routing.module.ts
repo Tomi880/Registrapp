@@ -42,10 +42,11 @@ const routes: Routes = [
   {
     path: 'bienvenida-a',
     loadChildren: () => import('./pages/bienvenida-a/bienvenida-a.module').then( m => m.BienvenidaAPageModule)
-  },  {
+  },
+  {
     path: 'coversor',
     loadChildren: () => import('./pages/coversor/coversor.module').then( m => m.CoversorPageModule)
-  }
+  },
 
 
 ];

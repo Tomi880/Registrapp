@@ -47,6 +47,14 @@ const routes: Routes = [
     path: 'coversor',
     loadChildren: () => import('./pages/coversor/coversor.module').then( m => m.CoversorPageModule)
   },
+  {
+    path: 'page404',
+    loadChildren: () => import('./pages/page404/page404.module').then( m => m.Page404PageModule)
+  },
+  {
+    path: '**',
+    redirectTo: 'page404'
+  },
 
 
 ];

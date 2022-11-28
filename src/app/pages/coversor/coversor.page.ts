@@ -19,6 +19,7 @@ export class CoversorPage implements OnInit {
   resultado: any;
   valor: any;
   alerta: any;
+  value: HTMLElement;
 
   constructor(private mindicadorService:MindicadorService, private alertController: AlertController) {
 
@@ -42,22 +43,23 @@ export class CoversorPage implements OnInit {
     cargarValorMonedas(){
       this.mindicadorService.obtenerValorPesos()
       .then(results => {
-        this.valor = document.getElementById("valor")
         this.resultado = 0;
         this.results = results;
         this.valorMonedaDolar = this.results.dolar.valor;
         this.valorMonedaEuro = this.results.euro.valor;
         this.valorMonedaUF = this.results.uf.valor;
         console.log(this.results); 
-        if (document.getElementById("valor"))
         if (document.getElementById("dolar")){
           this.resultado = this.valor / this.valorMonedaDolar
+          console.log(this.resultado);
         }
         else if (document.getElementById("euro")){
           this.resultado = this.valor / this.valorMonedaEuro
+          console.log(this.resultado);
         }
         else if (document.getElementById("uf")){
           this.resultado = this.valor / this.valorMonedaUF
+          console.log(this.resultado);
         }
         else {
           this.alerta;
@@ -66,23 +68,6 @@ export class CoversorPage implements OnInit {
       (err) => {
         console.log(err);
       });
-    }
-    
-    obtenerValorMoneda(){
-      this.valor = document.getElementById("valor")
-      this.resultado = 0;
-      this.valorMonedaDolar = this.results.dolar.valor;
-      this.valorMonedaEuro = this.results.euro.valor;
-      this.valorMonedaUF = this.results.uf.valor;
-      if (document.getElementById("dolar")){
-        this.resultado = this.valor / this.valorMonedaDolar
-      }
-      else if (document.getElementById("euro")){
-        this.resultado = this.valor / this.valorMonedaEuro
-      }
-      else {
-        this.resultado = this.valor / this.valorMonedaUF
-      }
     }
 
   }

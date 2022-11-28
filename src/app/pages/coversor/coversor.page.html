@@ -35,7 +35,7 @@
           </ion-item>
         </ion-list>
         <p>Ingrese monto:</p>
-        <input type="number" name="cambio" min="1" placeholder="0" id="valor">
-        <ion-button id="convertidor" click="cargarValorMonedas()">Convertir</ion-button>
+        <input type="number" [(ngModel)]="valor" min="1" placeholder="0" id="valor">
+        <ion-button id="convertidor" (click)="cargarValorMonedas()">Convertir</ion-button>
     </ion-list>
 </ion-content>

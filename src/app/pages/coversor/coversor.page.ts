@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MindicadorService } from 'src/app/services/mindicador/mindicador.service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-coversor',
@@ -9,27 +10,79 @@ import { MindicadorService } from 'src/app/services/mindicador/mindicador.servic
 })
 export class CoversorPage implements OnInit {
 
-  valorMoneda:any= [];
+  valorMonedaDolar: any;
+  valorMonedaEuro: any;
+  valorMonedaUF: any;
   pageTitle = 'coversor';
   isNotHome = true;
+  results: any;
+  resultado: any;
+  valor: any;
+  alerta: any;
 
-  constructor(private activatedRoute: ActivatedRoute, private mindicadorService:MindicadorService, ) {
+  constructor(private mindicadorService:MindicadorService, private alertController: AlertController) {
+
   }
 
   ngOnInit():void {
-    const moneda1 = document.getElementById('uno')
     this.cargarValorMonedas();
+  }
+
+  async presentAlert() {
+    this.alerta = await this.alertController.create({
+      header: 'Error',
+      subHeader: 'A ocurrido un problema',
+      message: 'debe elegir una opcion',
+      buttons: ['OK'],
+    });
+
+    await this.alerta.present();
   }
 
     cargarValorMonedas(){
       this.mindicadorService.obtenerValorPesos()
-      .then(respuesta => {
-        this.valorMoneda = [respuesta.uf,respuesta.dolar,respuesta.euro];
-        console.log(this.valorMoneda);
+      .then(results => {
+        this.valor = document.getElementById("valor")
+        this.resultado = 0;
+        this.results = results;
+        this.valorMonedaDolar = this.results.dolar.valor;
+        this.valorMonedaEuro = this.results.euro.valor;
+        this.valorMonedaUF = this.results.uf.valor;
+        console.log(this.results); 
+        if (document.getElementById("valor"))
+        if (document.getElementById("dolar")){
+          this.resultado = this.valor / this.valorMonedaDolar
+        }
+        else if (document.getElementById("euro")){
+          this.resultado = this.valor / this.valorMonedaEuro
+        }
+        else if (document.getElementById("uf")){
+          this.resultado = this.valor / this.valorMonedaUF
+        }
+        else {
+          this.alerta;
+        }
       },
       (err) => {
         console.log(err);
       });
+    }
+    
+    obtenerValorMoneda(){
+      this.valor = document.getElementById("valor")
+      this.resultado = 0;
+      this.valorMonedaDolar = this.results.dolar.valor;
+      this.valorMonedaEuro = this.results.euro.valor;
+      this.valorMonedaUF = this.results.uf.valor;
+      if (document.getElementById("dolar")){
+        this.resultado = this.valor / this.valorMonedaDolar
+      }
+      else if (document.getElementById("euro")){
+        this.resultado = this.valor / this.valorMonedaEuro
+      }
+      else {
+        this.resultado = this.valor / this.valorMonedaUF
+      }
     }
 
   }

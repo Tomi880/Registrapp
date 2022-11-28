@@ -20,6 +20,7 @@ export class HomePage implements OnInit {
   weathertemp: any;
   cityname: any;
   weatherdetail: any;
+  respuesta: any;
 
   constructor(private loadingCtrl: LoadingController, private httpClient: HttpClient, private geolocation: Geolocation) {}
 
@@ -51,9 +52,11 @@ export class HomePage implements OnInit {
        console.log('Error al obtener la ubicacion', error);
      });
      this.httpClient.get(`https://api.openweathermap.org/data/2.5/weather?lat=${this.lat}&lon=${this.lon}&appid=${this.APIKEY}`).subscribe(results => {
-      this.cityname = results['name']
-      this.weathertemp = results['temp']
-      this.weatherdetail = results['description']
+      this.respuesta = results;
+      this.cityname = this.respuesta.name;
+      this.weathertemp = this.respuesta.main.temp;
+      this.weatherdetail = this.respuesta.weather[0].description;
+      console.log(this.respuesta);
      })
   }
 }

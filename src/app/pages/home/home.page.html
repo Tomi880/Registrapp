@@ -9,18 +9,22 @@
     </ion-item>
 
     <ion-item lines="none">
-      <span>
-        {{weatherTemp?.temp}}
+      <span unit="Celcius">
+        Temperatura: {{weathertemp}} °C
       </span>
-      <span>°C</span>
-      <img slot="end" [src]= "weatherIcon">
     </ion-item>
 
     <ion-item lines="none">
       <ion-icon name="location"></ion-icon>
-      <span>{{cityName}}</span>
+      <span> {{cityname}}</span>
     </ion-item>
-    <ion-button (click)="loadData()">Usar mi ubicacion</ion-button>
+
+    <ion-item lines="none">
+      <ion-icon name="partly-sunny"></ion-icon>
+      <span> {{weatherdetail}}</span>
+    </ion-item>
+
+    <ion-button (click)="getGeolocation()">Usar mi ubicacion</ion-button>
   </ion-card>
   
   <ion-card>

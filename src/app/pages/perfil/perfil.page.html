@@ -1,0 +1,33 @@
+<app-header [isNotHome]="isNotHome" [pageTitle]="pageTitle"></app-header>
+
+<ion-content [fullscreen]="true">
+  <div class="avatar">
+    <ion-avatar >
+      <img *ngIf="profile?.image; else placeholder_avatar;" [src]="profile.image" />
+      <ng-template #placeholder_avatar>
+        <div class="no-avatar">
+          <p>click me!</p>
+        </div>
+      </ng-template>
+    </ion-avatar>
+  </div>
+
+  <div class="container" *ngIf="usuario" >
+    <ion-label>
+      Nombre:<ion-input disabled="true" type="text" [(ngModel)]="usuario.name"></ion-input>
+    </ion-label>
+    <ion-label>
+      Apellido:<ion-input disabled="true" type="text" [(ngModel)]="usuario.lastname"></ion-input>
+    </ion-label>
+    <ion-label>
+      Genero:<ion-input disabled="true" type="text" [(ngModel)]="usuario.gender"></ion-input>    
+    </ion-label>
+    <ion-label>
+      Edad:<ion-input disabled="true" type="text" [(ngModel)]="usuario.age"></ion-input> 
+    </ion-label>
+
+  </div>
+
+  <ion-button href="home" *ngIf="rol == 'admin' ">Crud usuario</ion-button>
+
+</ion-content>

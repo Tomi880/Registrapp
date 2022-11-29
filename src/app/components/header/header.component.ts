@@ -1,4 +1,7 @@
 import { Component,Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
+
 
 @Component({
   selector: 'app-header',
@@ -10,8 +13,17 @@ export class HeaderComponent implements OnInit {
   @Input() pageTitle : string;
   @Input() isNotHome : boolean;
 
-  constructor() { }
+  constructor(private authService:AuthService,
+    private router:Router) { 
+ }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
+  
+  logout(){
+    this.authService.logout();
+    this.router.navigateByUrl('/',{replaceUrl:true})
+  }
+
 
 }

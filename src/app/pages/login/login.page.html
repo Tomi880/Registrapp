@@ -1,4 +1,5 @@
 <app-header [isNotHome]="isNotHome" [pageTitle]="pageTitle"></app-header>
+
 <ion-content>
   <img class="img-logo" src="../../../assets/Logo_DuocUC.svg.png" alt="">
   <br>
@@ -9,21 +10,18 @@
             <h1>Ingrese sus datos</h1>
         </ion-label>
     </ion-card-title>
-    <ion-card-content>
-        <ion-item>
-            <ion-label position="floating">Nombre de Usuario</ion-label>
-            <ion-input  type="text" 
-                        [(ngModel)]="user.username" 
-                        placeholder="Username"
-                        required></ion-input>
-        </ion-item>
-        <ion-item>
-            <ion-label position="floating">Contraseña</ion-label>
-            <ion-input  type="password" 
-                        [(ngModel)]="user.password"
-                        required></ion-input>   
-        </ion-item>
-    </ion-card-content>
-    <ion-button color= "warning" shape="block" (click)="ingresar()">Ingreso </ion-button>
+    <form (ngSubmit)="login()" [formGroup]="credentials">
+      <ion-item class="ion-margin-bottom">
+        <ion-input type="email" placeholder="Email" formControlName="email"></ion-input>
+        <ion-note slot="error" *ngIf="(email?.dirty || email?.touched) && email?.errors">Formato email no válido</ion-note>
+      </ion-item>
+      <ion-item class="ion-margin-bottom">
+        <ion-input type="password" placeholder="password" formControlName="password"></ion-input>
+        <ion-note slot="error" *ngIf="(password?.dirty || password?.touched) && password?.errors">Debes ingresar al menos 6 caracteres</ion-note>
+      </ion-item>
+  
+      <ion-button expand="full" type="submit" [disabled]="!credentials.valid">Login</ion-button>
+      <ion-button expand="full" type="button" (click)="register()">Crear cuenta</ion-button>
+    </form>
 </ion-card>
 </ion-content>

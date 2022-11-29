@@ -4,6 +4,22 @@
 
 export const environment = {
   production: false,
+  firebase :{
+    apiKey: "AIzaSyCLVCNdvY1k14BxYBilRWHgisr3pXnf_YU",
+
+    authDomain: "prueba-9d47e.firebaseapp.com",
+  
+    projectId: "prueba-9d47e",
+  
+    storageBucket: "prueba-9d47e.appspot.com",
+  
+    messagingSenderId: "97184618122",
+  
+    appId: "1:97184618122:web:b544cf16f036bd109c3f73",
+  
+    measurementId: "G-VC4SFNWHHM"
+  
+  }
 };
 
 /*

@@ -1,13 +1,12 @@
 <ion-header>
-    <ion-toolbar>
-      <ion-title>{{pageTitle}}</ion-title>
-      <ion-buttons slot="start">
-        <ion-back-button defaultHref="/"></ion-back-button>
-      </ion-buttons>
-    </ion-toolbar>
-  </ion-header>
+  <ion-toolbar>
+    <ion-title>{{pageTitle}}</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
   
-
 <ion-content>
     <ion-list>
       <h1>
@@ -27,15 +26,17 @@
         </ion-item>
         <ion-list>
           <ion-item>
-            <ion-select placeholder="Seleccione el tipo de cambio">
-              <ion-select-option id="dolar" value="dolar">Dolar</ion-select-option>
-              <ion-select-option id="euro" value="euro">Euro</ion-select-option>
-              <ion-select-option id="uf" value="uf">UF</ion-select-option>
+            <ion-select id="opcion" placeholder="Seleccione el tipo de cambio">
+              <ion-select-option id="dolar">Dolar</ion-select-option>
+              <ion-select-option id="euro">Euro</ion-select-option>
+              <ion-select-option id="uf">UF</ion-select-option>
             </ion-select>
           </ion-item>
         </ion-list>
-        <p>Ingrese monto:</p>
-        <input type="number" [(ngModel)]="valor" min="1" placeholder="0" id="valor">
-        <ion-button id="convertidor" (click)="cargarValorMonedas()">Convertir</ion-button>
+        <ion-label>
+          <p>Ingrese monto:</p>
+          <input type="number" [(ngModel)]="valor" min="1" placeholder="0">
+          <ion-button id="convertidor" (click)="obtenerValorMoneda()">Convertir</ion-button>
+        </ion-label>
     </ion-list>
 </ion-content>

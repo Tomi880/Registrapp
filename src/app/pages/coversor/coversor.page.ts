@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { MindicadorService } from 'src/app/services/mindicador/mindicador.service';
 import { AlertController } from '@ionic/angular';
 
@@ -13,13 +12,16 @@ export class CoversorPage implements OnInit {
   valorMonedaDolar: any;
   valorMonedaEuro: any;
   valorMonedaUF: any;
-  pageTitle = 'coversor';
+  pageTitle = 'conversor';
   isNotHome = true;
   results: any;
-  resultado: any;
-  valor: any;
+  resultado: number;
+  valor: number;
   alerta: any;
-  value: HTMLElement;
+  moneda: string;
+  total: any;
+  nombre: any;
+  resultado1: any;
 
   constructor(private mindicadorService:MindicadorService, private alertController: AlertController) {
 
@@ -43,31 +45,33 @@ export class CoversorPage implements OnInit {
     cargarValorMonedas(){
       this.mindicadorService.obtenerValorPesos()
       .then(results => {
-        this.resultado = 0;
         this.results = results;
         this.valorMonedaDolar = this.results.dolar.valor;
         this.valorMonedaEuro = this.results.euro.valor;
         this.valorMonedaUF = this.results.uf.valor;
         console.log(this.results); 
-        if (document.getElementById("dolar")){
-          this.resultado = this.valor / this.valorMonedaDolar
-          console.log(this.resultado);
-        }
-        else if (document.getElementById("euro")){
-          this.resultado = this.valor / this.valorMonedaEuro
-          console.log(this.resultado);
-        }
-        else if (document.getElementById("uf")){
-          this.resultado = this.valor / this.valorMonedaUF
-          console.log(this.resultado);
-        }
-        else {
-          this.alerta;
-        }
       },
       (err) => {
         console.log(err);
       });
+    }
+
+    obtenerValorMoneda(moneda){
+      if(moneda == "dolares"){
+        this.resultado = this.valor / this.valorMonedaDolar
+        this.resultado1 = this.resultado.toFixed(2)
+      }
+      else if(moneda == "euros"){
+        this.resultado = Math.round(this.valor / this.valorMonedaEuro)
+        this.resultado1 = this.resultado.toFixed(2)
+      }
+      else if(moneda == "ufs"){
+        this.resultado = Math.round(this.valor / this.valorMonedaUF)
+        this.resultado1 = this.resultado.toFixed(2)
+      }
+      else {
+        this.presentAlert();
+      }
     }
 
   }

@@ -4,23 +4,33 @@
 
   <ion-card>
     <ion-item lines="none">
-      <p>Clima de hoy</p>
+      <p>Fecha de hoy: </p>
       <ion-label slot="end">{{todayDate | date: "EEE dd MMM"}}</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <p>
+        Clima de hoy
+      </p>
     </ion-item>
 
     <ion-item lines="none">
       <span>
-        {{weatherTemp?.temp}}
+        Temperatura: {{weathertemp}} °C
       </span>
-      <span>°C</span>
-      <img slot="end" [src]= "weatherIcon">
     </ion-item>
 
     <ion-item lines="none">
+      <span>Comuna: {{cityname}}</span>
       <ion-icon name="location"></ion-icon>
-      <span>{{cityName}}</span>
     </ion-item>
-    <ion-button (click)="loadData()">Usar mi ubicacion</ion-button>
+
+    <ion-item lines="none">
+      <span>Detalle del clima: {{weatherdetail}}</span>
+      <ion-icon name="partly-sunny"></ion-icon>
+    </ion-item>
+
+    <ion-button (click)="obtenerClima()">Usar mi ubicacion</ion-button>
   </ion-card>
   
   <ion-card>

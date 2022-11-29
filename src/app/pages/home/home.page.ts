@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoadingController } from '@ionic/angular';
-import { HttpClient } from '@angular/common/http';
-import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
+import { OpenweathermapService } from 'src/app/services/openweathermap/openweathermap.service';
 
 @Component({
   selector: 'app-home',
@@ -14,17 +13,16 @@ export class HomePage implements OnInit {
   pageTitle = 'home';
   isNotHome = true;
   loading : HTMLIonLoadingElement;
-  APIKEY = 'ec18a1adac82007bb96905f07d4df42c';
-  lat: any;
-  lon: any;
   weathertemp: any;
   cityname: any;
   weatherdetail: any;
+  respuesta: any;
 
-  constructor(private loadingCtrl: LoadingController, private httpClient: HttpClient, private geolocation: Geolocation) {}
+  constructor(private loadingCtrl: LoadingController, private openweathermapService: OpenweathermapService) {}
 
   ngOnInit(): void {
     this.cargarLoading('Cargando');
+    this.openweathermapService.getLocation();
   }
 
   cargarLoading(message: string){
@@ -43,17 +41,13 @@ export class HomePage implements OnInit {
 
   }
 
-  getGeolocation(){
-    this.geolocation.getCurrentPosition().then((resp) => {
-      this.lat = resp.coords.latitude
-      this.lon = resp.coords.longitude
-     }).catch((error) => {
-       console.log('Error al obtener la ubicacion', error);
-     });
-     this.httpClient.get(`https://api.openweathermap.org/data/2.5/weather?lat=${this.lat}&lon=${this.lon}&appid=${this.APIKEY}`).subscribe(results => {
-      this.cityname = results['name']
-      this.weathertemp = results['temp']
-      this.weatherdetail = results['description']
-     })
+  obtenerClima(){
+    this.openweathermapService.getGeolocation().then(results => {
+      this.respuesta = results;
+      this.cityname = this.respuesta.name;
+      this.weathertemp = this.respuesta.main.temp;
+      this.weatherdetail = this.respuesta.weather[0].description;
+    })
   }
+
 }

@@ -1,23 +1,45 @@
-<app-header [isNotHome]="isNotHome" [pageTitle]="pageTitle"></app-header>
-  
 
+<app-header [isNotHome]="isNotHome" [pageTitle]="pageTitle"></app-header>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{pageTitle}}</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+  
 <ion-content>
     <ion-list>
       <h1>
         conversor de monedas
       </h1>
-        <ion-item *ngFor="let moneda of valorMoneda">
+        <ion-item>
           <ion-label>
-            <h3>{{moneda.codigo}}
-                {{moneda.valor}}$
+            <h3>Valor del euro: ${{valorMonedaEuro}}
+            </h3>
+            <h3>
+              Valor del dolar: ${{valorMonedaDolar}}
+            </h3>
+            <h3>
+              valor del UF: ${{valorMonedaUF}}
             </h3>
           </ion-label>
-        </ion-item> 
-        <input type="radio" name="cambio" id="uno"> Dolar
-        <input type="radio" name="cambio" id="dos"> Euro
-        <input type="radio" name="cambio" id="tres"> UF
-        <p>Ingrese monto:</p>
-        <input type="number" name="cambio" min="1" placeholder="0" id="cuatro">
-        <input type="button" id="cotizador" value="Conversor" onclick="">
-      </ion-list>
+        </ion-item>
+        <ion-list>
+          <ion-item>
+            <ion-select id="opcion" placeholder="Seleccione el tipo de cambio" [(ngModel)] = "moneda">
+              <ion-select-option value="dolares">Dolar</ion-select-option>
+              <ion-select-option value="euros">Euro</ion-select-option>
+              <ion-select-option value="ufs">UF</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+        <ion-label>
+          <p>Ingrese monto:</p>
+          <input type="number" [(ngModel)]="valor" min="1" placeholder="0">
+          <ion-button id="convertidor" (click)="obtenerValorMoneda(moneda)">Convertir</ion-button>
+          <p>El resultado de la conversion es: ${{resultado1}} {{moneda}}</p>
+        </ion-label>
+    </ion-list>
 </ion-content>

@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { LoadingController } from '@ionic/angular';
-import { HttpClient } from '@angular/common/http';
-import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
 import { OpenweathermapService } from 'src/app/services/openweathermap/openweathermap.service';
 
 @Component({
@@ -20,10 +18,11 @@ export class HomePage implements OnInit {
   weatherdetail: any;
   respuesta: any;
 
-  constructor(private loadingCtrl: LoadingController, private httpClient: HttpClient, private geolocation: Geolocation, private openweathermapService: OpenweathermapService) {}
+  constructor(private loadingCtrl: LoadingController, private openweathermapService: OpenweathermapService) {}
 
   ngOnInit(): void {
     this.cargarLoading('Cargando');
+    this.openweathermapService.getLocation();
   }
 
   cargarLoading(message: string){

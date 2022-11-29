@@ -18,6 +18,10 @@ export class CoversorPage implements OnInit {
   resultado: number;
   valor: number;
   alerta: any;
+  moneda: string;
+  total: any;
+  nombre: any;
+  resultado1: any;
 
   constructor(private mindicadorService:MindicadorService, private alertController: AlertController) {
 
@@ -52,18 +56,18 @@ export class CoversorPage implements OnInit {
       });
     }
 
-    obtenerValorMoneda(){
-      if("dolar"){
+    obtenerValorMoneda(moneda){
+      if(moneda == "dolares"){
         this.resultado = this.valor / this.valorMonedaDolar
-        console.log(this.resultado);
+        this.resultado1 = this.resultado.toFixed(2)
       }
-      else if("euro"){
-        this.resultado = this.valor / this.valorMonedaEuro
-        console.log(this.resultado);
+      else if(moneda == "euros"){
+        this.resultado = Math.round(this.valor / this.valorMonedaEuro)
+        this.resultado1 = this.resultado.toFixed(2)
       }
-      else if("uf"){
-        this.resultado = this.valor / this.valorMonedaUF
-        console.log(this.resultado);
+      else if(moneda == "ufs"){
+        this.resultado = Math.round(this.valor / this.valorMonedaUF)
+        this.resultado1 = this.resultado.toFixed(2)
       }
       else {
         this.presentAlert();

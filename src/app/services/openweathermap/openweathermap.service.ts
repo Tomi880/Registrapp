@@ -16,26 +16,26 @@ export class OpenweathermapService {
   respuesta: any;
 
   constructor(private httpClient: HttpClient, private geolocation: Geolocation) {
-    
     }
     
-    getGeolocation(): Promise<any> {
-      return new Promise((resolve,reject) =>{
-        this.geolocation.getCurrentPosition().then((resp) => {
-          this.lat = resp.coords.latitude
-          this.lon = resp.coords.longitude
-         }).catch((error) => {
-           console.log('Error al obtener la ubicacion', error);
-         });
-         this.httpClient.get(`https://api.openweathermap.org/data/2.5/weather?lat=${this.lat}&lon=${this.lon}&appid=${this.APIKEY}&units=metric`).subscribe(results => {
-          console.log(this.respuesta);
-          resolve(results);
-         },
-         (err) => {
-          reject(err);
-         })
-  
-      })
-      
-    }
+    getLocation(){
+      this.geolocation.getCurrentPosition().then((resp) => {
+        this.lat = resp.coords.latitude
+        this.lon = resp.coords.longitude
+       }).catch((error) => {
+         console.log('Error al obtener la ubicacion', error);
+       });
+  }
+  getGeolocation(): Promise<any> {
+    return new Promise((resolve,reject) =>{
+       this.httpClient.get(`https://api.openweathermap.org/data/2.5/weather?lat=${this.lat}&lon=${this.lon}&appid=${this.APIKEY}&units=metric`).subscribe(results => {
+        console.log(this.respuesta);
+        resolve(results);
+       },
+       (err) => {
+        reject(err);
+       })
+
+    })
+  }
 }

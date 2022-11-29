@@ -12,7 +12,7 @@ export class CoversorPage implements OnInit {
   valorMoneda:any= [];
   pageTitle = 'coversor';
   isNotHome = true;
-
+  loading : HTMLIonLoadingElement;
   constructor(private activatedRoute: ActivatedRoute, private mindicadorService:MindicadorService, ) {
   }
 

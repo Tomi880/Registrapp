@@ -15,9 +15,6 @@ export class AppComponent {
 
   constructor(private avatarService: AvatarService) {}
   
-  ngOnInit() {
-    this.getUsuario();
-  }
 
   getUsuario(){
     this.avatarService.getUsuarioById().subscribe(respuesta => {

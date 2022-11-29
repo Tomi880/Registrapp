@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from '@angular/fire/auth';
+import { doc, docData,Firestore } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private auth:Auth) { }
+  constructor(private auth:Auth, private firestore:Firestore) { }
 
   async register(email:string,password:string){
     try{
@@ -29,4 +30,6 @@ export class AuthService {
   logout(){
     return signOut(this.auth);
   }
+
+
 }

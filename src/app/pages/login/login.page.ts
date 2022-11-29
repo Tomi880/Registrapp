@@ -83,6 +83,7 @@ export class LoginPage implements OnInit {
 
     if(user){
       this.router.navigateByUrl('/bienvenida',{replaceUrl:true});
+      
     }
     else{
       this.alertPresent('Login failed','Please try again!');
@@ -96,7 +97,7 @@ export class LoginPage implements OnInit {
     await loading.dismiss();
 
     if(user){
-      this.router.navigateByUrl('/cuenta',{replaceUrl:true});
+      this.router.navigateByUrl('/crear-cuenta',{replaceUrl:true});
     }
     else{
       this.alertPresent('Register failed','Please try again!');

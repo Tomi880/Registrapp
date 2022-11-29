@@ -7,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Page404Page implements OnInit {
 
+  pageTitle = 'Login';
+  isNotHome = false;
+  loading : HTMLIonLoadingElement;
+  
   constructor() { }
 
   ngOnInit() {

@@ -1,5 +1,5 @@
 import { Component, OnInit,Input } from '@angular/core';
-import { User, Usuario } from 'src/app/services/usuario';
+import { Usuario } from 'src/app/services/usuario';
 import { AvatarService } from 'src/app/services/avatar.service';
 import { AlertController, ModalController, ToastController,LoadingController } from '@ionic/angular';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
@@ -21,6 +21,7 @@ export class CrearCuentaPage implements OnInit {
     email: this.avatarService.getEmail(),
     age: 0,
     image:'',
+    perfil: 'user'
   };
   pageTitle: string = 'crea';
   profile:any=null;

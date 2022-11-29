@@ -33,6 +33,7 @@ export class AvatarService {
           email: usuario.email,
           age: usuario.age,
           image: usuario.image,
+          perfil: usuario.perfil
         });
 
         return true;
@@ -74,7 +75,7 @@ export class AvatarService {
        gender: usuario.gender,
        email: usuario.email,
        age: usuario.age,
-       image: usuario.image 
+       image: usuario.image,
       });
   }
 

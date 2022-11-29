@@ -10,6 +10,7 @@ import { AlertController, ModalController, ToastController } from '@ionic/angula
 })
 export class BienvenidaPage implements OnInit {
 
+  rol: string;
   pageTitle = 'Bienvenido usuario.';
   isNotHome = false;
   loading : HTMLIonLoadingElement;
@@ -20,7 +21,8 @@ export class BienvenidaPage implements OnInit {
     age:0,
     gender:'',
     email:'',
-    image:''
+    image:'',
+    perfil:''
   };
   
   constructor(private modalCtrl:ModalController, private alertCtrl:AlertController,
@@ -30,11 +32,14 @@ export class BienvenidaPage implements OnInit {
 
   ngOnInit() {
     this.getUsuario();
+
   }
+
   getUsuario(){
     this.avatarService.getUsuarioById().subscribe(respuesta => {
       this.usuario = respuesta;
     });
+    
   }
 
 }

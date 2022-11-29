@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AvatarService } from './services/avatar.service';
+import { Usuario } from './services/usuario';
 
 @Component({
   selector: 'app-root',
@@ -6,6 +8,25 @@ import { Component } from '@angular/core';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
+
+  usuario: Usuario = null;
+  rol :string;
+  
+
+  constructor(private avatarService: AvatarService) {}
+  
+  ngOnInit() {
+    this.getUsuario();
+  }
+
+  getUsuario(){
+    this.avatarService.getUsuarioById().subscribe(respuesta => {
+      this.usuario = respuesta;
+      this.rol = respuesta.perfil;
+      console.log(this.rol);
+    });
+    
+  }
   public appPages = [
     { title: 'Home', url: '/home', icon: 'home' },
     { title: 'Coversor', url: '/coversor', icon: 'paper-plane' },
@@ -13,5 +34,6 @@ export class AppComponent {
     { title: 'Perfil', url: '/perfil', icon: 'contact' }
 
   ];
-  constructor() {}
+  
+  
 }

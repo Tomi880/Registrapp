@@ -24,6 +24,7 @@ export class PerfilPage  implements OnInit{
   usuario: Usuario = null;
   @Input() id :string;
   modalCtrl: any;
+  rol:string;
 
   constructor(private authService:AuthService,
     private avatarService:AvatarService,
@@ -37,6 +38,7 @@ export class PerfilPage  implements OnInit{
 
     ngOnInit() {
     this.getUsuario();
+    this.getRol();
     }
   logout(){
     this.authService.logout();
@@ -82,5 +84,13 @@ export class PerfilPage  implements OnInit{
     toast.present();
   }
 
+
+  getRol(){
+    this.avatarService.getUsuarioById().subscribe(respuesta => {
+      this.rol = respuesta.perfil;
+      console.log(this.rol);
+    });
+  }
+  
 
 }

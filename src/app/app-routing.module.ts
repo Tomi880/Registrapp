@@ -60,9 +60,24 @@ const routes: Routes = [
     loadChildren: () => import('./pages/perfil/perfil.module').then( m => m.PerfilPageModule)
   },
   {
+    path: 'crud',
+    loadChildren: () => import('./pages/crud/crud.module').then( m => m.CrudPageModule)
+  },
+  {
+    path: 'modal-crud',
+    loadChildren: () => import('./pages/modal-crud/modal-crud.module').then( m => m.ModalCrudPageModule)
+  },
+  {
     path: '**',
     redirectTo: 'page404'
-  },
+  }
+
+
+
+
+
+
+
 
 
 

@@ -28,6 +28,6 @@
 
   </div>
 
-  <ion-button href="home" *ngIf="rol == 'admin' ">Crud usuario</ion-button>
+  <ion-button (click)="crudadmin()" *ngIf="rol == 'admin' ">Crud usuario</ion-button>
 
 </ion-content>

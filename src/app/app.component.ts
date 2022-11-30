@@ -29,7 +29,6 @@ export class AppComponent {
     { title: 'Conversor', url: '/coversor', icon: 'paper-plane' },
     { title: 'About', url: '/about', icon: 'help' },
     { title: 'Perfil', url: '/perfil', icon: 'contact' }
-
   ];
   
   

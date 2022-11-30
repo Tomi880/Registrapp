@@ -13,6 +13,7 @@ import { Auth } from '@angular/fire/auth';
   templateUrl: './perfil.page.html',
   styleUrls: ['./perfil.page.scss'],
 })
+
 export class PerfilPage  implements OnInit{
 
   pageTitle = 'perfil';
@@ -90,6 +91,10 @@ export class PerfilPage  implements OnInit{
       this.rol = respuesta.perfil;
       console.log(this.rol);
     });
+  }
+
+  crudadmin(){
+    this.router.navigate(['/crud']);
   }
   
 

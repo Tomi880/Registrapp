@@ -14,10 +14,6 @@ export class CoversorPage implements OnInit {
   valorMonedaUF: any;
   pageTitle = 'conversor';
   isNotHome = true;
-
-  loading : HTMLIonLoadingElement;
-  constructor(private activatedRoute: ActivatedRoute, private mindicadorService:MindicadorService, ) {
-
   results: any;
   resultado: number;
   valor: number;
@@ -28,7 +24,6 @@ export class CoversorPage implements OnInit {
   resultado1: any;
 
   constructor(private mindicadorService:MindicadorService, private alertController: AlertController) {
-
 
   }
 
@@ -78,5 +73,4 @@ export class CoversorPage implements OnInit {
         this.presentAlert();
       }
     }
-
   }

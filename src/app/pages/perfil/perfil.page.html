@@ -13,18 +13,20 @@
   </div>
 
   <div class="container" *ngIf="usuario" >
-    <ion-label>
-      Nombre:<ion-input disabled="true" type="text" [(ngModel)]="usuario.name"></ion-input>
-    </ion-label>
-    <ion-label>
-      Apellido:<ion-input disabled="true" type="text" [(ngModel)]="usuario.lastname"></ion-input>
-    </ion-label>
-    <ion-label>
-      Genero:<ion-input disabled="true" type="text" [(ngModel)]="usuario.gender"></ion-input>    
-    </ion-label>
-    <ion-label>
-      Edad:<ion-input disabled="true" type="text" [(ngModel)]="usuario.age"></ion-input> 
-    </ion-label>
+    <ion-list>
+      <ion-label>
+        <p>Nombre:</p><ion-input disabled="true" type="text" [(ngModel)]="usuario.name"></ion-input>
+      </ion-label>
+      <ion-label>
+        <p>Apellido:</p><ion-input disabled="true" type="text" [(ngModel)]="usuario.lastname"></ion-input>
+      </ion-label>
+      <ion-label>
+        <p>Genero</p><ion-input disabled="true" type="text" [(ngModel)]="usuario.gender"></ion-input>    
+      </ion-label>
+      <ion-label>
+        <p>Edad:</p><ion-input disabled="true" type="text" [(ngModel)]="usuario.age"></ion-input> 
+      </ion-label>
+    </ion-list>
 
   </div>
 

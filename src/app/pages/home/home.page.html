@@ -1,32 +1,44 @@
 <app-header [isNotHome]="isNotHome" [pageTitle]="pageTitle"></app-header>
 <ion-content>
-  <h1>Bienvenido a Registrap:</h1>
+  <ion-text color="medium">
+    <h1>Bienvenido a Registrap:</h1>
+  </ion-text>
 
   <ion-card>
     <ion-item lines="none">
-      <p>Fecha de hoy: </p>
-      <ion-label slot="end">{{todayDate | date: "EEE dd MMM"}}</ion-label>
+      <ion-text color="medium">
+        <p>Fecha de hoy: </p>
+      </ion-text>
+      <ion-label color="medium" slot="end">{{todayDate | date: "EEE dd MMM"}}</ion-label>
     </ion-item>
 
     <ion-item>
-      <p>
-        Clima de hoy
-      </p>
+      <ion-text color="medium">
+        <p>
+          Clima de hoy
+        </p>
+      </ion-text>
     </ion-item>
 
     <ion-item lines="none">
-      <span>
-        Temperatura: {{weathertemp}} °C
-      </span>
+      <ion-text color="medium">
+        <p>
+          Temperatura: {{weathertemp}} °C
+        </p>
+      </ion-text>
     </ion-item>
 
     <ion-item lines="none">
-      <span>Comuna: {{cityname}}</span>
+      <ion-text color="medium">
+        <p>Comuna: {{cityname}}</p>
+      </ion-text>
       <ion-icon name="location"></ion-icon>
     </ion-item>
 
     <ion-item lines="none">
-      <span>Detalle del clima: {{weatherdetail}}</span>
+      <ion-text color="medium">
+        <p>Detalle del clima: {{weatherdetail}}</p>
+      </ion-text>
       <ion-icon name="partly-sunny"></ion-icon>
     </ion-item>
 

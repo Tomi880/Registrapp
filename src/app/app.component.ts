@@ -26,9 +26,9 @@ export class AppComponent {
   }
   public appPages = [
     { title: 'Home', url: '/home', icon: 'home' },
-    { title: 'Conversor', url: '/coversor', icon: 'paper-plane' },
+    { title: 'Conversor', url: '/coversor', icon: 'cash' },
     { title: 'About', url: '/about', icon: 'help' },
-    { title: 'Perfil', url: '/perfil', icon: 'contact' }
+    { title: 'Perfil', url: '/perfil', icon: 'person-circle' },
 
   ];
   

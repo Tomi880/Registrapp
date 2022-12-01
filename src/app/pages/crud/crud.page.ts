@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AlertController, ModalController, ToastController } from '@ionic/angular';
-import { Usuario } from 'src/app/services/usuario';
+import { User } from 'src/app/services/usuario';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { ModalCrudPage } from '../modal-crud/modal-crud.page';
 
@@ -10,8 +10,9 @@ import { ModalCrudPage } from '../modal-crud/modal-crud.page';
   styleUrls: ['crud.page.scss'],
 })
 export class CrudPage {
-
-  usuarios : Usuario[] = [];
+  pageTitle = 'crud';
+  isNotHome = true;
+  usuarios : User[] = [];
 
   constructor(private usuarioService:UsuarioService, private modalCtrl:ModalController, private alertCtrl:AlertController,
     private toastCtrl:ToastController) {
@@ -28,7 +29,7 @@ export class CrudPage {
   async openDetailUsuario(usuario){
     const modal = await this.modalCtrl.create({
       component: ModalCrudPage,
-      componentProps: {id: usuario.id },
+      componentProps: {id: usuario.uid },
       breakpoints: [0,0.5,0.8,1],
       initialBreakpoint:1
     });
@@ -65,9 +66,30 @@ export class CrudPage {
           placeholder:'correo@correo.com',
         },
         {
+          name:'materia',
+          type:'text',
+          placeholder:'materia'
+        },
+        {
+          name:'telefono',
+          type:'number',
+          placeholder:'telefono'
+        },
+        {
+          name:'direccion',
+          type:'text',
+          placeholder:'direccion'
+        },
+        {
+          name:'comuna',
+          type:'text',
+          placeholder:'comuna'
+        },
+        {
           name:'image',
           type:'url',
           placeholder:'link image',
+          
         }
        ],
       buttons:[
@@ -95,4 +117,6 @@ export class CrudPage {
     });
     toast.present();
   }
+
+  
 }

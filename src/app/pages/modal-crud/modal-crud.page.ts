@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { ModalController, ToastController } from '@ionic/angular';
-import { Usuario } from 'src/app/services/usuario';
+import { User } from 'src/app/services/usuario';
 import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
@@ -10,8 +11,8 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 })
 export class ModalCrudPage implements OnInit {
 
-  @Input() uid :string;
-  usuario: Usuario = null;
+  @Input() id :string;
+  usuario: User = null;
   pageTitle: string = '';
 
   constructor(private usuarioService:UsuarioService,private toastCtrl:ToastController,private modalCtrl:ModalController) {
@@ -24,7 +25,7 @@ export class ModalCrudPage implements OnInit {
   }
 
   getUsuario(){
-    this.usuarioService.getUsuarioById(this.uid).subscribe(respuesta => {
+    this.usuarioService.getUsuarioById(this.id).subscribe(respuesta => {
       this.usuario = respuesta;
     });
   }
@@ -49,4 +50,15 @@ export class ModalCrudPage implements OnInit {
     toast.present();
   }
 
+  async uploadAvatar(){
+    const avatar = await Camera.getPhoto({
+      quality:90,
+      allowEditing:false,
+      resultType: CameraResultType.Base64,
+      source: CameraSource.Camera //Photos o Prompt
+    });
+      const result = await Promise.resolve(this.usuarioService.Getavatar(avatar));
+      this.usuario.image = result;
+      console.log(result);
+    }
 }

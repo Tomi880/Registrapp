@@ -23,7 +23,8 @@ export class CrearCuentaPage implements OnInit {
     image:'',
     perfil: 'user'
   };
-  pageTitle: string = 'crea';
+  pageTitle = 'crud';
+  isNotHome = false;
   profile:any=null;
 
 

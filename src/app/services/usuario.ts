@@ -15,3 +15,12 @@ export interface Usuario{
     telefono: number;
     perfil:string;
 }
+
+export interface Asistencia{
+    id?:string;
+    rut:string;
+    name:string;
+    lastname:string;
+    fecha:string;
+}
+

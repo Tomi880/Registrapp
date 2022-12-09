@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Firestore, collection, collectionData, doc, docData, addDoc, updateDoc, deleteDoc } from '@angular/fire/firestore';
-import { Usuario } from './usuario';
+import { Usuario,Asistencia} from './usuario';
 import { Observable } from 'rxjs';
 import { Photo } from '@capacitor/camera';
 import { getDownloadURL, ref, Storage, uploadString } from '@angular/fire/storage';
@@ -64,5 +64,12 @@ export class UsuarioService {
         
 
 }
+
+getAsistencias(): Observable<Asistencia[]>{
+  const usuariosRef = collection(this.firestore, 'asistencia');
+  return collectionData(usuariosRef, {idField:'id'}) as Observable<Asistencia[]>;
+}
+
+
 
 }

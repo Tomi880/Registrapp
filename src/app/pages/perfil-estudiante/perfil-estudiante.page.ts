@@ -42,6 +42,7 @@ export class PerfilEstudiantePage implements OnInit {
     ngOnInit() {
       this.getRol1();
       this.getUsuario1();
+      console.log(this.getUsuario1());
 
     }
   logout(){

@@ -75,10 +75,13 @@ const routes: Routes = [
     path: 'perfil-estudiante',
     loadChildren: () => import('./pages/perfil-estudiante/perfil-estudiante.module').then( m => m.PerfilEstudiantePageModule)
   },
-
   {
     path: 'qr',
     loadChildren: () => import('./pages/qr/qr.module').then( m => m.QrPageModule)
+  },
+  {
+    path: 'ver-asistencias',
+    loadChildren: () => import('./pages/ver-asistencias/ver-asistencias.module').then( m => m.VerAsistenciasPageModule)
   },
   {
     path: '**',

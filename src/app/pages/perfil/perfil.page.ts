@@ -117,6 +117,10 @@ export class PerfilPage  implements OnInit{
   crudadmin(){
     this.router.navigate(['/crud']);
   }
+
+  verAsistencia(){
+    this.router.navigate(['/ver-asistencias']);
+  }
   
 
 }

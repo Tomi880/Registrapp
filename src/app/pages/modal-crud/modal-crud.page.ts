@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { ModalController, ToastController } from '@ionic/angular';
-import { User } from 'src/app/services/usuario';
+import { Usuario } from 'src/app/services/usuario';
 import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
@@ -12,7 +12,7 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 export class ModalCrudPage implements OnInit {
 
   @Input() id :string;
-  usuario: User = null;
+  usuario: Usuario = null;
   pageTitle: string = '';
 
   constructor(private usuarioService:UsuarioService,private toastCtrl:ToastController,private modalCtrl:ModalController) {
@@ -21,7 +21,7 @@ export class ModalCrudPage implements OnInit {
 
   ngOnInit() {
     this.getUsuario();
-    console.log(this.usuario);
+    console.log(this.getUsuario());
   }
 
   getUsuario(){

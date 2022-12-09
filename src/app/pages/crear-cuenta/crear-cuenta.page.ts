@@ -15,13 +15,18 @@ export class CrearCuentaPage implements OnInit {
   @Input() id :string;
   usuario: Usuario = {
     uid :'',
+    rut: '' ,
     name: '',
     lastname: '',
     gender: '',
     email: this.avatarService.getEmail(),
     age: 0,
     image:'',
-    perfil: 'user'
+    asignatura:'',
+    direccion:'',
+    comuna:'',
+    telefono:0,
+    perfil: ''
   };
   pageTitle = 'crud';
   isNotHome = false;

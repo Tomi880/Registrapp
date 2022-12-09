@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { LoadingController } from '@ionic/angular';
 import { OpenweathermapService } from 'src/app/services/openweathermap/openweathermap.service';
+import { Usuario } from 'src/app/services/usuario';
+import { AvatarService } from 'src/app/services/avatar.service';
+import { Router } from '@angular/router';
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 
 @Component({
   selector: 'app-home',
@@ -17,12 +21,16 @@ export class HomePage implements OnInit {
   cityname: any;
   weatherdetail: any;
   respuesta: any;
+  usuario: Usuario = null;
+  rol : string;
 
-  constructor(private loadingCtrl: LoadingController, private openweathermapService: OpenweathermapService) {}
+  constructor(private loadingCtrl: LoadingController, private openweathermapService: OpenweathermapService, private avatarService:AvatarService, private router:Router) {}
 
-  ngOnInit(): void {
+  ngOnInit(){
     this.cargarLoading('Cargando');
     this.openweathermapService.getLocation();
+    this.getRol();
+    this.getRol1();
   }
 
   cargarLoading(message: string){
@@ -49,5 +57,48 @@ export class HomePage implements OnInit {
       this.weatherdetail = this.respuesta.weather[0].description;
     })
   }
+
+  getUsuario(){
+    this.avatarService.getUsuarioById().subscribe(respuesta => {
+      this.usuario = respuesta;
+    });
+    
+  }
+  getUsuario1(){
+    this.avatarService.getUsuarioById1().subscribe(respuesta => {
+      this.usuario = respuesta;
+    });
+    
+  }
+
+
+  getRol(){
+    this.avatarService.getUsuarioById().subscribe(respuesta => {
+      this.rol = respuesta.perfil;
+      console.log(this.rol);
+    });
+  }
+  
+  getRol1(){
+    this.avatarService.getUsuarioById1().subscribe(respuesta => {
+      this.rol = respuesta.perfil;
+      console.log(this.rol);
+    });
+  }
+
+  GenerarQR(){
+    this.router.navigate(['/qr']);
+  }
+
+  async uploadAvatar(){
+    const avatar = await Camera.getPhoto({
+      quality:90,
+      allowEditing:false,
+      resultType: CameraResultType.Base64,
+      source: CameraSource.Camera //Photos o Prompt
+    });
+    }
+
+
 
 }

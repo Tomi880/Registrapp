@@ -1,6 +1,6 @@
 <app-header [isNotHome]="isNotHome" [pageTitle]="pageTitle"></app-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" >
   <div class="avatar">
     <ion-avatar >
       <img *ngIf="profile?.image; else placeholder_avatar;" [src]="profile.image" />
@@ -12,7 +12,7 @@
     </ion-avatar>
   </div>
 
-
+  
   <div class="container" *ngIf="usuario " >
     <ion-list>
       <ion-label>
@@ -53,7 +53,6 @@
 
   </div>
 
-  <ion-button (click)="crudadmin()" *ngIf="rol == 'profesor' ">Alumnos</ion-button>
-  <ion-button (click)="crudadmin()" *ngIf="rol == 'profesor' ">Asistencia Alumnos</ion-button>
+  <ion-button (click)="asistencia()" *ngIf="rol == 'alumno' ">Asistencia</ion-button>
 
 </ion-content>

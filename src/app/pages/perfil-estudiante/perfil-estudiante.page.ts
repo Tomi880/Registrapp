@@ -9,12 +9,11 @@ import { Usuario } from 'src/app/services/usuario';
 import { Auth } from '@angular/fire/auth';
 
 @Component({
-  selector: 'app-perfil',
-  templateUrl: './perfil.page.html',
-  styleUrls: ['./perfil.page.scss'],
+  selector: 'app-perfil-estudiante',
+  templateUrl: './perfil-estudiante.page.html',
+  styleUrls: ['./perfil-estudiante.page.scss'],
 })
-
-export class PerfilPage  implements OnInit{
+export class PerfilEstudiantePage implements OnInit {
 
   pageTitle = 'perfil';
   isNotHome = true ;
@@ -41,13 +40,9 @@ export class PerfilPage  implements OnInit{
     }
 
     ngOnInit() {
-      this.getRol();
-      if(this.getRol() == true){
-        this.getUsuario();
-      }
-      else {
-        this.getUsuario1();
-      }
+      this.getRol1();
+      this.getUsuario1();
+
     }
   logout(){
     this.authService.logout();
@@ -55,10 +50,9 @@ export class PerfilPage  implements OnInit{
   }
 
   loadProfile(){
-      this.avatarService.getUserProfile().subscribe(respuesta => {
+      this.avatarService.getUserProfile1().subscribe(respuesta => {
         this.profile = respuesta
       });
-
   }
 
 
@@ -79,11 +73,6 @@ export class PerfilPage  implements OnInit{
     await alert.present();
   }
 
-  getUsuario(){
-      this.avatarService.getUsuarioById().subscribe(respuesta => {
-        this.usuario = respuesta;
-      });
-  }
   getUsuario1(){
     this.avatarService.getUsuarioById1().subscribe(respuesta => {
       this.usuario = respuesta;
@@ -101,21 +90,15 @@ export class PerfilPage  implements OnInit{
   }
 
 
-  getRol(){
-    this.avatarService.getUsuarioById().subscribe(respuesta => {
-      if(respuesta == undefined){
-        return false;
-      }
-      else{
+  getRol1(){
+    this.avatarService.getUsuarioById1().subscribe(respuesta => {
         this.rol = respuesta.perfil;
-      }
     });  
-    return true;
   }
 
 
-  crudadmin(){
-    this.router.navigate(['/crud']);
+  asistencia(){
+    this.router.navigate(['/asistencia']);
   }
   
 

@@ -7,6 +7,10 @@
 <ion-content>
   <div *ngIf="usuario">
     <ion-item>
+      <ion-label position="stacked">Rut</ion-label>
+      <ion-input type="text" [(ngModel)]="usuario.rut"></ion-input>
+    </ion-item>
+    <ion-item>
       <ion-label position="stacked">Name</ion-label>
       <ion-input type="text" [(ngModel)]="usuario.name"></ion-input>
     </ion-item>
@@ -31,7 +35,7 @@
       <ion-input type="email" [(ngModel)]="usuario.email" ></ion-input>
     </ion-item>
 
-    <ion-item>
+    <ion-item *ngIf="usuario.perfil == 'profesor'">
       <ion-label position="stacked">Materia</ion-label>
       <ion-input type="email" [(ngModel)]="usuario.materia" ></ion-input>
     </ion-item>

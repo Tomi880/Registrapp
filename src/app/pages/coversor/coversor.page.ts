@@ -16,13 +16,17 @@ export class CoversorPage implements OnInit {
   isNotHome = true;
   results: any;
   resultado: number;
+  resultado1: any;
+  resultado2: any;
+  resultado3: any;
   valor: number;
+  valor1: number;
   alerta: any;
   moneda: string;
+  moneda1: string;
   total: any;
   nombre: any;
-  resultado1: any;
-
+  
   constructor(private mindicadorService:MindicadorService, private alertController: AlertController) {
 
   }
@@ -73,4 +77,23 @@ export class CoversorPage implements OnInit {
         this.presentAlert();
       }
     }
+
+    obtenerValorMonedaChilena(moneda1){
+      if(moneda1 == "dolares"){
+        this.resultado2 = this.valor1 * this.valorMonedaDolar
+        this.resultado3 = this.resultado2.toFixed(2)
+      }
+      else if(moneda1 == "euros"){
+        this.resultado2 = this.valor1 * this.valorMonedaEuro
+        this.resultado3 = this.resultado2.toFixed(2)
+      }
+      else if(moneda1 == "ufs"){
+        this.resultado2 = this.valor1 * this.valorMonedaUF
+        this.resultado3 = this.resultado2.toFixed(2)
+      }
+      else {
+        this.presentAlert();
+      }
+    }
+
   }

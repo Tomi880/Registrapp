@@ -39,7 +39,7 @@
         <ion-label>
           <p>Ingrese monto:</p>
           <input type="number" [(ngModel)]="valor" min="1" placeholder="0">
-          <ion-button id="convertidor" (click)="obtenerValorMoneda(moneda)">Convertir</ion-button>
+          <ion-button color="warning"id="convertidor" (click)="obtenerValorMoneda(moneda)">Convertir</ion-button>
           <p>El resultado de la conversion es: ${{resultado1}} {{moneda}}</p>
         </ion-label>
     </ion-list>

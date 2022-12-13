@@ -6,7 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./qr.page.scss'],
 })
 export class QrPage implements OnInit {
-
   pageTitle = 'qr';
   isNotHome = true;
   loading : HTMLIonLoadingElement;
@@ -15,4 +14,8 @@ export class QrPage implements OnInit {
   ngOnInit() {
   }
 
+  create(){
+
+    
+  }
 }

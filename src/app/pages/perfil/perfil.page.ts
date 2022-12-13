@@ -7,6 +7,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { AvatarService } from 'src/app/services/avatar.service';
 import { Usuario } from 'src/app/services/usuario';
 import { Auth } from '@angular/fire/auth';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
   selector: 'app-perfil',
@@ -34,6 +35,7 @@ export class PerfilPage  implements OnInit{
     private loadingCtrl:LoadingController,
     private alertCtrl:AlertController,
     private toastCtrl:ToastController,
+    private usuarioService:UsuarioService,
     private auth:Auth,
     private router:Router) {
         this.loadProfile();
@@ -92,7 +94,7 @@ export class PerfilPage  implements OnInit{
 
   async updateUsuario(){
     this.avatarService.updateUsuario(this.usuario);
-    this.modalCtrl.dismiss();
+
     const toast = await this.toastCtrl.create({
       message:'Usuario actualizado',
       duration:1000,
@@ -121,6 +123,18 @@ export class PerfilPage  implements OnInit{
   verAsistencia(){
     this.router.navigate(['/ver-asistencias']);
   }
+
+  async uploadAvatar(){
+    const avatar = await Camera.getPhoto({
+      quality:90,
+      allowEditing:false,
+      resultType: CameraResultType.Base64,
+      source: CameraSource.Camera //Photos o Prompt
+    });
+      const result = await Promise.resolve(this.usuarioService.Getavatar(avatar));
+      this.usuario.image = result;
+      console.log(result);
+    }
   
 
 }

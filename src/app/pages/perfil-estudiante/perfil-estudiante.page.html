@@ -1,7 +1,7 @@
 <app-header [isNotHome]="isNotHome" [pageTitle]="pageTitle"></app-header>
 
 <ion-content [fullscreen]="true" >
-  <div class="avatar">
+  <div class="avatar" (click)="uploadAvatar()">
     <ion-avatar >
       <img *ngIf="profile?.image; else placeholder_avatar;" [src]="profile.image" />
       <ng-template #placeholder_avatar>
@@ -16,43 +16,47 @@
   <div class="container" *ngIf="usuario " >
     <ion-list>
       <ion-label>
-        Rut:<ion-input disabled="true" type="text" [(ngModel)]="usuario.rut"></ion-input>
+        Rut:<ion-input type="text" [(ngModel)]="usuario.rut"></ion-input>
       </ion-label>
       <ion-label>
-        Nombre:<ion-input disabled="true" type="text" [(ngModel)]="usuario.name"></ion-input>
+        Nombre:<ion-input type="text" [(ngModel)]="usuario.name"></ion-input>
       </ion-label>
       <ion-label>
-        Apellido:<ion-input disabled="true" type="text" [(ngModel)]="usuario.lastname"></ion-input>
+        Apellido:<ion-input type="text" [(ngModel)]="usuario.lastname"></ion-input>
       </ion-label>
       <ion-label>
-        Genero:<ion-input disabled="true" type="text" [(ngModel)]="usuario.gender"></ion-input>    
+        Genero:<ion-input type="text" [(ngModel)]="usuario.gender"></ion-input>    
       </ion-label>
       <ion-label>
-        Edad:<ion-input disabled="true" type="text" [(ngModel)]="usuario.age"></ion-input> 
+        Edad:<ion-input type="text" [(ngModel)]="usuario.age"></ion-input> 
       </ion-label>
       <ion-label *ngIf="usuario.perfil == 'profesor'">
-        asignatura:<ion-input disabled="true" type="text" [(ngModel)]="usuario.asignatura"></ion-input> 
+        asignatura:<ion-input type="text" [(ngModel)]="usuario.asignatura"></ion-input> 
       </ion-label>
       <ion-label>
-        Correo:<ion-input disabled="true" type="text" [(ngModel)]="usuario.email"></ion-input>    
+        Correo:<ion-input  type="text" [(ngModel)]="usuario.email"></ion-input>    
       </ion-label>
       <ion-label>
-        direccion:<ion-input disabled="true" type="text" [(ngModel)]="usuario.direccion"></ion-input> 
+        direccion:<ion-input type="text" [(ngModel)]="usuario.direccion"></ion-input> 
       </ion-label>
       <ion-label>
-        comuna:<ion-input disabled="true" type="text" [(ngModel)]="usuario.comuna"></ion-input> 
+        comuna:<ion-input type="text" [(ngModel)]="usuario.comuna"></ion-input> 
       </ion-label>
       <ion-label>
-        telefono:<ion-input disabled="true" type="text" [(ngModel)]="usuario.telefono"></ion-input> 
+        telefono:<ion-input type="text" [(ngModel)]="usuario.telefono"></ion-input> 
       </ion-label>
       <ion-label>
-        Usted es :<ion-input disabled="true" type="text" [(ngModel)]="usuario.perfil"></ion-input> 
+        Usted es :<ion-input type="text" [(ngModel)]="usuario.perfil"></ion-input> 
+      </ion-label>
+      <ion-label>
+        Link Imagen:<ion-input disabled="true" type="text" [(ngModel)]="usuario.image"></ion-input>
       </ion-label>
     </ion-list>
     
-
+    <ion-button color="warning" expand="full"(click)="updateUsuario()" *ngIf="rol == 'alumno' ">Actualizar</ion-button>
   </div>
 
-  <ion-button (click)="asistencia()" *ngIf="rol == 'alumno' ">Asistencia</ion-button>
+  <ion-button color="warning" expand="full"(click)="asistencia()" *ngIf="rol == 'alumno' ">Asistencia</ion-button>
+
 
 </ion-content>

@@ -97,17 +97,25 @@ export class AvatarService {
   }
 
   updateUsuario(usuario: Usuario){
-    const usuarioRef = doc(this.firestore, `users/${this.auth.currentUser.uid}`);
+    const user = this.auth.currentUser;
+    const usuarioRef = doc(this.firestore, `profesor/${user.uid}`);
     return updateDoc(usuarioRef, 
       {
-       name: usuario.name,
-       lastname: usuario.lastname,
-       gender: usuario.gender,
-       email: usuario.email,
-       age: usuario.age,
-       image: usuario.image,
+        rut: usuario.rut,
+        name: usuario.name,
+        lastname: usuario.lastname,
+        gender: usuario.gender,
+        email: usuario.email,
+        age: usuario.age,
+        image: usuario.image,
+        asignatura: usuario.asignatura,
+        direccion: usuario.direccion,
+        comuna: usuario.comuna,
+        telefono: usuario.telefono,
+        perfil: usuario.perfil
       });
   }
+
 
 
 
@@ -121,13 +129,13 @@ export class AvatarService {
     return docData(usuarioDocRef) as Observable<Usuario>;
   }
 
-  async addAsistencia(asistencia: Asistencia){
+  async addAsistencia(asistencia: Asistencia,usuario:Usuario){
     try {
         const userDocRef = collection(this.firestore,'asistencia');
         await addDoc(userDocRef,{
-          rut: asistencia.rut,
-          name: asistencia.name,
-          lastname: asistencia.lastname,
+          rut: usuario.rut,
+          name: usuario.name,
+          lastname: usuario.lastname,
           fecha: asistencia.fecha
         });
       return true;

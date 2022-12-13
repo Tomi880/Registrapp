@@ -20,8 +20,8 @@
         <ion-note slot="error" *ngIf="(password?.dirty || password?.touched) && password?.errors">Debes ingresar al menos 6 caracteres</ion-note>
       </ion-item>
   
-      <ion-button expand="full" type="submit" [disabled]="!credentials.valid">Login</ion-button>
-      <ion-button expand="full" type="button" (click)="register()">Crear cuenta</ion-button>
+      <ion-button color="warning" expand="full" type="submit" [disabled]="!credentials.valid">Login</ion-button>
+      <ion-button color="warning" expand="full" type="button" (click)="register()">Crear cuenta</ion-button>
     </form>
 </ion-card>
 </ion-content>

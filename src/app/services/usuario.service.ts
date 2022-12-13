@@ -70,6 +70,24 @@ getAsistencias(): Observable<Asistencia[]>{
   return collectionData(usuariosRef, {idField:'id'}) as Observable<Asistencia[]>;
 }
 
-
+updateUsuario1(usuario: Usuario){
+  const user = this.auth.currentUser
+  const usuarioRef = doc(this.firestore, `alumno/${user.uid}`);
+  return updateDoc(usuarioRef, 
+    {
+      rut: usuario.rut,
+      name: usuario.name,
+      lastname: usuario.lastname,
+      gender: usuario.gender,
+      email: usuario.email,
+      age: usuario.age,
+      image: usuario.image,
+      asignatura: usuario.asignatura,
+      direccion: usuario.direccion,
+      comuna: usuario.comuna,
+      telefono: usuario.telefono,
+      perfil: usuario.perfil
+    });
+}
 
 }

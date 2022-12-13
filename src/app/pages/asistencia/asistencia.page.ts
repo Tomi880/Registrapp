@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class AsistenciaPage implements OnInit {
 
-  pageTitle = 'About';
+  pageTitle = 'Asitencia';
   isNotHome = true;
 
   usuario: Usuario = null;
@@ -21,7 +21,7 @@ export class AsistenciaPage implements OnInit {
   rut:string;
 
   asistencia : Asistencia = {
-    rut: this.getRut(),
+    rut:this.getRut(),
     name: this.getName(),
     lastname: this.getLastname(),
     fecha: new Date().toString()
@@ -66,7 +66,7 @@ export class AsistenciaPage implements OnInit {
 
 
   async addAsistt(){
-    this.avatarService.addAsistencia(this.asistencia);
+    this.avatarService.addAsistencia(this.asistencia,this.usuario);
     this.modalCtrl.dismiss();
     const toast = await this.toastCtrl.create({
       message:'Asistencia confirmada',

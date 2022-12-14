@@ -68,9 +68,31 @@ const routes: Routes = [
     loadChildren: () => import('./pages/modal-crud/modal-crud.module').then( m => m.ModalCrudPageModule)
   },
   {
+    path: 'asistencia',
+    loadChildren: () => import('./pages/asistencia/asistencia.module').then( m => m.AsistenciaPageModule)
+  },
+  {
+    path: 'perfil-estudiante',
+    loadChildren: () => import('./pages/perfil-estudiante/perfil-estudiante.module').then( m => m.PerfilEstudiantePageModule)
+  },
+  {
+    path: 'qr',
+    loadChildren: () => import('./pages/qr/qr.module').then( m => m.QrPageModule)
+  },
+  {
+    path: 'ver-asistencias',
+    loadChildren: () => import('./pages/ver-asistencias/ver-asistencias.module').then( m => m.VerAsistenciasPageModule)
+  },
+  {
     path: '**',
     redirectTo: 'page404'
-  }
+  },
+
+
+
+
+
+
 
 
 

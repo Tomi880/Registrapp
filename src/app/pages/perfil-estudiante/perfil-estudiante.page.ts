@@ -10,12 +10,11 @@ import { Auth } from '@angular/fire/auth';
 import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
-  selector: 'app-perfil',
-  templateUrl: './perfil.page.html',
-  styleUrls: ['./perfil.page.scss'],
+  selector: 'app-perfil-estudiante',
+  templateUrl: './perfil-estudiante.page.html',
+  styleUrls: ['./perfil-estudiante.page.scss'],
 })
-
-export class PerfilPage  implements OnInit{
+export class PerfilEstudiantePage implements OnInit {
 
   pageTitle = 'perfil';
   isNotHome = true ;
@@ -43,13 +42,10 @@ export class PerfilPage  implements OnInit{
     }
 
     ngOnInit() {
-      this.getRol();
-      if(this.getRol() == true){
-        this.getUsuario();
-      }
-      else {
-        this.getUsuario1();
-      }
+      this.getRol1();
+      this.getUsuario1();
+      console.log(this.getUsuario1());
+
     }
   logout(){
     this.authService.logout();
@@ -57,10 +53,9 @@ export class PerfilPage  implements OnInit{
   }
 
   loadProfile(){
-      this.avatarService.getUserProfile().subscribe(respuesta => {
+      this.avatarService.getUserProfile1().subscribe(respuesta => {
         this.profile = respuesta
       });
-
   }
 
 
@@ -81,60 +76,45 @@ export class PerfilPage  implements OnInit{
     await alert.present();
   }
 
-  getUsuario(){
-      this.avatarService.getUsuarioById().subscribe(respuesta => {
-        this.usuario = respuesta;
-      });
-  }
   getUsuario1(){
     this.avatarService.getUsuarioById1().subscribe(respuesta => {
       this.usuario = respuesta;
     });
 }
 
-  async updateUsuario(){
-    this.avatarService.updateUsuario(this.usuario);
+async updateUsuario(){
+  this.usuarioService.updateUsuario1(this.usuario);
+  const toast = await this.toastCtrl.create({
+    message:'Usuario actualizado',
+    duration:1000,
+  });
+  toast.present();
+}
 
-    const toast = await this.toastCtrl.create({
-      message:'Usuario actualizado',
-      duration:1000,
-    });
-    toast.present();
+async uploadAvatar(){
+  const avatar = await Camera.getPhoto({
+    quality:90,
+    allowEditing:false,
+    resultType: CameraResultType.Base64,
+    source: CameraSource.Camera //Photos o Prompt
+  });
+    const result = await Promise.resolve(this.usuarioService.Getavatar(avatar));
+    this.usuario.image = result;
+    console.log(result);
   }
 
 
-  getRol(){
-    this.avatarService.getUsuarioById().subscribe(respuesta => {
-      if(respuesta == undefined){
-        return false;
-      }
-      else{
+
+  getRol1(){
+    this.avatarService.getUsuarioById1().subscribe(respuesta => {
         this.rol = respuesta.perfil;
-      }
     });  
-    return true;
   }
 
 
-  crudadmin(){
-    this.router.navigate(['/crud']);
+  asistencia(){
+    this.router.navigate(['/asistencia']);
   }
-
-  verAsistencia(){
-    this.router.navigate(['/ver-asistencias']);
-  }
-
-  async uploadAvatar(){
-    const avatar = await Camera.getPhoto({
-      quality:90,
-      allowEditing:false,
-      resultType: CameraResultType.Base64,
-      source: CameraSource.Camera //Photos o Prompt
-    });
-      const result = await Promise.resolve(this.usuarioService.Getavatar(avatar));
-      this.usuario.image = result;
-      console.log(result);
-    }
   
 
 }

@@ -5,7 +5,7 @@ import { getDownloadURL, ref, Storage, uploadString } from '@angular/fire/storag
 import { Photo } from '@capacitor/camera';
 import { base64 } from '@firebase/util';
 import { Observable } from 'rxjs';
-import { Usuario } from './usuario';
+import { Usuario, Asistencia } from './usuario';
 
 @Injectable({
   providedIn: 'root'
@@ -18,23 +18,53 @@ export class AvatarService {
 
     getUserProfile(){
       const user = this.auth.currentUser;
-      const userDocRef = doc(this.firestore,`users/${user.uid}`);
+      const userDocRef = doc(this.firestore,`profesor/${user.uid}`);
+      return docData(userDocRef);
+    }
+    getUserProfile1(){
+      const user = this.auth.currentUser;
+      const userDocRef = doc(this.firestore,`alumno/${user.uid}`);
       return docData(userDocRef);
     }
 
     async addUsuario(usuario: Usuario){
       const user = this.auth.currentUser;
       try {
-        const userDocRef = doc(this.firestore,`users/${user.uid}`);
-        await setDoc(userDocRef,{
-          name: usuario.name,
-          lastname: usuario.lastname,
-          gender: usuario.gender,
-          email: usuario.email,
-          age: usuario.age,
-          image: usuario.image,
-          perfil: usuario.perfil
-        });
+        if(usuario.perfil == 'profesor'){
+          const userDocRef = doc(this.firestore,`profesor/${user.uid}`);
+          await setDoc(userDocRef,{
+            rut: usuario.rut,
+            name: usuario.name,
+            lastname: usuario.lastname,
+            gender: usuario.gender,
+            email: usuario.email,
+            age: usuario.age,
+            image: usuario.image,
+            asignatura: usuario.asignatura,
+            direccion: usuario.direccion,
+            comuna: usuario.comuna,
+            telefono: usuario.telefono,
+            perfil: usuario.perfil
+          });
+        }
+        else if(usuario.perfil == 'alumno'){
+          const userDocRef = doc(this.firestore,`alumno/${user.uid}`);
+          await setDoc(userDocRef,{
+            rut: usuario.rut,
+            name: usuario.name,
+            lastname: usuario.lastname,
+            gender: usuario.gender,
+            email: usuario.email,
+            age: usuario.age,
+            image: usuario.image,
+            asignatura: usuario.asignatura,
+            direccion: usuario.direccion,
+            comuna: usuario.comuna,
+            telefono: usuario.telefono,
+            perfil: usuario.perfil
+          });
+        }
+
 
         return true;
       } catch (error) {
@@ -67,21 +97,54 @@ export class AvatarService {
   }
 
   updateUsuario(usuario: Usuario){
-    const usuarioRef = doc(this.firestore, `users/${this.auth.currentUser.uid}`);
+    const user = this.auth.currentUser;
+    const usuarioRef = doc(this.firestore, `profesor/${user.uid}`);
     return updateDoc(usuarioRef, 
       {
-       name: usuario.name,
-       lastname: usuario.lastname,
-       gender: usuario.gender,
-       email: usuario.email,
-       age: usuario.age,
-       image: usuario.image,
+        rut: usuario.rut,
+        name: usuario.name,
+        lastname: usuario.lastname,
+        gender: usuario.gender,
+        email: usuario.email,
+        age: usuario.age,
+        image: usuario.image,
+        asignatura: usuario.asignatura,
+        direccion: usuario.direccion,
+        comuna: usuario.comuna,
+        telefono: usuario.telefono,
+        perfil: usuario.perfil
       });
   }
 
+
+
+
   getUsuarioById(): Observable<Usuario>{
-    const usuarioDocRef = doc(this.firestore, `users/${this.auth.currentUser.uid}`);
+    const usuarioDocRef = doc(this.firestore, `profesor/${this.auth.currentUser.uid}`);
     return docData(usuarioDocRef) as Observable<Usuario>;
   }
+
+  getUsuarioById1(): Observable<Usuario>{
+    const usuarioDocRef = doc(this.firestore, `alumno/${this.auth.currentUser.uid}`);
+    return docData(usuarioDocRef) as Observable<Usuario>;
+  }
+
+  async addAsistencia(asistencia: Asistencia,usuario:Usuario){
+    try {
+        const userDocRef = collection(this.firestore,'asistencia');
+        await addDoc(userDocRef,{
+          rut: usuario.rut,
+          name: usuario.name,
+          lastname: usuario.lastname,
+          fecha: asistencia.fecha
+        });
+      return true;
+    } catch (error) {
+      return false;
+    }
+  }
+
+
+
 
 }

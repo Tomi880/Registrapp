@@ -1,6 +1,6 @@
 <app-header [isNotHome]="isNotHome" [pageTitle]="pageTitle"></app-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" >
   <div class="avatar" (click)="uploadAvatar()">
     <ion-avatar >
       <img *ngIf="profile?.image; else placeholder_avatar;" [src]="profile.image" />
@@ -12,7 +12,7 @@
     </ion-avatar>
   </div>
 
-
+  
   <div class="container" *ngIf="usuario " >
     <ion-list>
       <ion-label>
@@ -34,7 +34,7 @@
         asignatura:<ion-input type="text" [(ngModel)]="usuario.asignatura"></ion-input> 
       </ion-label>
       <ion-label>
-        Correo:<ion-input type="text" [(ngModel)]="usuario.email"></ion-input>    
+        Correo:<ion-input  type="text" [(ngModel)]="usuario.email"></ion-input>    
       </ion-label>
       <ion-label>
         direccion:<ion-input type="text" [(ngModel)]="usuario.direccion"></ion-input> 
@@ -49,13 +49,14 @@
         Usted es :<ion-input type="text" [(ngModel)]="usuario.perfil"></ion-input> 
       </ion-label>
       <ion-label>
-        Link Imagen :<ion-input type="text" [(ngModel)]="usuario.image"></ion-input>
+        Link Imagen:<ion-input disabled="true" type="text" [(ngModel)]="usuario.image"></ion-input>
       </ion-label>
     </ion-list>
-
+    
+    <ion-button color="warning" expand="full"(click)="updateUsuario()" *ngIf="rol == 'alumno' ">Actualizar</ion-button>
   </div>
 
-  <ion-button color="warning" expand="full" (click)="crudadmin()" *ngIf="rol == 'profesor' ">Alumnos</ion-button>
-  <ion-button color="warning" expand="full" (click)="verAsistencia()" *ngIf="rol == 'profesor' ">Asistencia Alumnos</ion-button>
-  <ion-button color="warning" expand="full" (click)="updateUsuario()" *ngIf="rol == 'profesor' ">Actualizar</ion-button>
+  <ion-button color="warning" expand="full"(click)="asistencia()" *ngIf="rol == 'alumno' ">Asistencia</ion-button>
+
+
 </ion-content>

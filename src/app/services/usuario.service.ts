@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Firestore, collection, collectionData, doc, docData, addDoc, updateDoc, deleteDoc } from '@angular/fire/firestore';
-import { User } from './usuario';
+import { Usuario,Asistencia} from './usuario';
 import { Observable } from 'rxjs';
 import { Photo } from '@capacitor/camera';
 import { getDownloadURL, ref, Storage, uploadString } from '@angular/fire/storage';
@@ -13,40 +13,42 @@ export class UsuarioService {
 
   constructor(private firestore:Firestore,private storage:Storage,private auth:Auth) { }
 
-  getUsuarios(): Observable<User[]>{
-    const usuariosRef = collection(this.firestore, 'usuarios');
-    return collectionData(usuariosRef, {idField:'uid'}) as Observable<User[]>;
+  getUsuarios(): Observable<Usuario[]>{
+    const usuariosRef = collection(this.firestore, 'alumno');
+    return collectionData(usuariosRef, {idField:'uid'}) as Observable<Usuario[]>;
   }
 
-  getUsuarioById(id:string): Observable<User>{
-    const usuarioDocRef = doc(this.firestore, `usuarios/${id}`);
-    return docData(usuarioDocRef, { idField:'id' }) as Observable<User>;
+  getUsuarioById(id:string): Observable<Usuario>{
+    const usuarioDocRef = doc(this.firestore, `alumno/${id}`);
+    return docData(usuarioDocRef, { idField:'uid' }) as Observable<Usuario>;
   }
 
-  addUsuario(usuario: User){
-    const usuariosRef = collection(this.firestore, 'usuarios');
+  addUsuario(usuario: Usuario){
+    const usuariosRef = collection(this.firestore, 'alumno');
     return addDoc(usuariosRef, usuario);
   }
 
-  updateUsuario(usuario: User){
-    const usuarioRef = doc(this.firestore, `usuarios/${usuario.id}`);
+  updateUsuario(usuario: Usuario){
+    const usuarioRef = doc(this.firestore, `alumno/${usuario.uid}`);
     return updateDoc(usuarioRef, 
       {
-       name: usuario.name,
-       lastname: usuario.lastname,
-       gender: usuario.gender,
-       email: usuario.email,
-       age: usuario.age,
-       materia: usuario.materia,
-       telefono: usuario.telefono,
-       direccion: usuario.direccion,
-       comuna: usuario.comuna,
-       image: usuario.image 
+        rut: usuario.rut,
+        name: usuario.name,
+        lastname: usuario.lastname,
+        gender: usuario.gender,
+        email: usuario.email,
+        age: usuario.age,
+        image: usuario.image,
+        asignatura: usuario.asignatura,
+        direccion: usuario.direccion,
+        comuna: usuario.comuna,
+        telefono: usuario.telefono,
+        perfil: usuario.perfil
       });
   }
 
-  deleteUsuario(usuario:User){
-    const usuarioRef = doc(this.firestore,`usuarios/${usuario.id}`);
+  deleteUsuario(usuario:Usuario){
+    const usuarioRef = doc(this.firestore,`alumno/${usuario.uid}`);
     return deleteDoc(usuarioRef);
   }
 
@@ -61,6 +63,31 @@ export class UsuarioService {
       return imagen;
         
 
+}
+
+getAsistencias(): Observable<Asistencia[]>{
+  const usuariosRef = collection(this.firestore, 'asistencia');
+  return collectionData(usuariosRef, {idField:'id'}) as Observable<Asistencia[]>;
+}
+
+updateUsuario1(usuario: Usuario){
+  const user = this.auth.currentUser
+  const usuarioRef = doc(this.firestore, `alumno/${user.uid}`);
+  return updateDoc(usuarioRef, 
+    {
+      rut: usuario.rut,
+      name: usuario.name,
+      lastname: usuario.lastname,
+      gender: usuario.gender,
+      email: usuario.email,
+      age: usuario.age,
+      image: usuario.image,
+      asignatura: usuario.asignatura,
+      direccion: usuario.direccion,
+      comuna: usuario.comuna,
+      telefono: usuario.telefono,
+      perfil: usuario.perfil
+    });
 }
 
 }

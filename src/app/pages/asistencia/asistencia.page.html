@@ -1,0 +1,13 @@
+<app-header [isNotHome]="isNotHome" [pageTitle]="pageTitle"></app-header>
+
+<ion-content>
+  <h1>Escriba Sus datos</h1>
+  <div class="container">
+    <ion-list>
+      <ion-label>
+        Fecha:<ion-input disabled="true" type="text" [(ngModel)]="asistencia.fecha"></ion-input>    
+      </ion-label>
+    </ion-list>
+  </div>
+  <ion-button color= "warning" (click)="addAsistt()">Asistencia</ion-button>
+</ion-content>

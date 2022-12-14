@@ -9,6 +9,16 @@
       </ion-avatar>
     </div>
   <div class="container">
+    <div>
+    <ion-select interface="action-sheet" placeholder="Es alumno o profesor?"[(ngModel)]="usuario.perfil">
+      <ion-select-option value="profesor">Profesor</ion-select-option>
+      <ion-select-option value="alumno">Alumno</ion-select-option>
+    </ion-select>
+  </div>
+  <label>
+    Rut:
+    <ion-input type="text" [(ngModel)]="usuario.rut"></ion-input>
+  </label>
     <label>
       Nombre:
       <ion-input type="text" [(ngModel)]="usuario.name"></ion-input>
@@ -23,7 +33,27 @@
     </label>
     <label>
       Edad:
-      <ion-input type="text" [(ngModel)]="usuario.age"></ion-input>
+      <ion-input type="number" [(ngModel)]="usuario.age"></ion-input>
+    </label>
+    <label>
+      Email:
+      <ion-input type="text" [(ngModel)]="usuario.email"></ion-input>
+    </label>
+    <label *ngIf="usuario.perfil == 'profesor'">
+      Asignatura:
+      <ion-input type="text" [(ngModel)]="usuario.asignatura"></ion-input>
+    </label>
+    <label>
+      Direccion:
+      <ion-input type="text" [(ngModel)]="usuario.direccion"></ion-input>
+    </label>
+    <label>
+      Comuna:
+      <ion-input type="text" [(ngModel)]="usuario.comuna"></ion-input>
+    </label>
+    <label>
+      Telefono:
+      <ion-input type="number" [(ngModel)]="usuario.telefono"></ion-input>
     </label>
     <label>
       image:
@@ -32,11 +62,14 @@
       </ion-avatar>
       <ion-input type="text" [(ngModel)]="usuario.image"></ion-input>
     </label>
-  </div>
-
-  <ion-button expand="block" color="success" (click)="addUsuario()">
-    <ion-icon name="save" slot="start">Grabar</ion-icon>
-  </ion-button>
-
   
+  
+  </div>
+  
+  <ion-button expand="block" color="success" (click)="addUsuario()" *ngIf="usuario.perfil == 'profesor'" >
+    Grabar Profesor
+  </ion-button>
+  <ion-button expand="block" color="success" (click)="addUsuario()" *ngIf="usuario.perfil == 'alumno'" >
+    Grabar Alumno
+  </ion-button>
 </ion-content>

@@ -1,28 +1,27 @@
-
 <app-header [isNotHome]="isNotHome" [pageTitle]="pageTitle"></app-header>
   
 <ion-content>
     <ion-list>
       <ion-text color="medium">
         <h1>
-          conversor de monedas
+          Conversor de moneda Chilena a Dolar, Euro y UF
         </h1>
       </ion-text>
         <ion-item>
           <ion-label>
             <ion-text color="warning">
               <h3>
-                Valor del euro: ${{valorMonedaEuro}}
+                Valor del euro en moneda chilena: ${{valorMonedaEuro}}
               </h3>
             </ion-text>
             <ion-text color="warning">
               <h3>
-                Valor del dolar: ${{valorMonedaDolar}}
+                Valor del dolar en moneda chilena: ${{valorMonedaDolar}}
               </h3>
             </ion-text>
             <ion-text color="warning">
               <h3>
-                valor del UF: ${{valorMonedaUF}}
+                valor del UF en moneda chilena: ${{valorMonedaUF}}
               </h3>
             </ion-text>
           </ion-label>
@@ -39,8 +38,35 @@
         <ion-label>
           <p>Ingrese monto:</p>
           <input type="number" [(ngModel)]="valor" min="1" placeholder="0">
+
           <ion-button color="warning"id="convertidor" (click)="obtenerValorMoneda(moneda)">Convertir</ion-button>
           <p>El resultado de la conversion es: ${{resultado1}} {{moneda}}</p>
+
+          <ion-button id="convertidor" (click)="obtenerValorMoneda(moneda)">Convertir</ion-button>
+          <p>El resultado de la conversion de moneda chilena a {{moneda}} es: ${{resultado1}} {{moneda}}</p>
+
         </ion-label>
+    </ion-list>
+    <ion-list>
+      <ion-text color="medium">
+        <h1>
+          Conversor de Dolar, Euro y UF a moneda Chilena
+        </h1>
+      </ion-text>
+      <ion-list>
+        <ion-item>
+          <ion-select id="opcion" placeholder="Seleccione el tipo de cambio" [(ngModel)] = "moneda1">
+            <ion-select-option value="dolares">Dolar</ion-select-option>
+            <ion-select-option value="euros">Euro</ion-select-option>
+            <ion-select-option value="ufs">UF</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+      <ion-label>
+        <p>Ingrese monto:</p>
+        <input type="number" [(ngModel)]="valor1" min="1" placeholder="0">
+        <ion-button id="convertidor" (click)="obtenerValorMonedaChilena(moneda1)">Convertir</ion-button>
+        <p>El resultado de la conversion de {{moneda1}} a moneda chilena es: ${{resultado3}} pesos</p>
+      </ion-label>
     </ion-list>
 </ion-content>

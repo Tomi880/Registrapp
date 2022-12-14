@@ -10,9 +10,6 @@ export class OpenweathermapService {
   APIKEY = 'ec18a1adac82007bb96905f07d4df42c';
   lat: any;
   lon: any;
-  weathertemp: any;
-  cityname: any;
-  weatherdetail: any;
   respuesta: any;
 
   constructor(private httpClient: HttpClient, private geolocation: Geolocation) {
